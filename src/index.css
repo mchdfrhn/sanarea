@@ -142,7 +142,7 @@
 
   /* Premium card style */
   .product-card {
-    @apply bg-card overflow-hidden transition-all duration-500 group;
+    @apply bg-card overflow-hidden transition-all duration-500;
   }
 
   .product-card:hover {
