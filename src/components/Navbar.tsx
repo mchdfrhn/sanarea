@@ -36,6 +36,7 @@ const Navbar = () => {
           stagger: 0.1,
           ease: "power2.out",
           delay: 0.2, // increased delay slightly to wait for panel slide
+          clearProps: "opacity", // Important: clear inline opacity so CSS hover works
         },
       );
     } else {
@@ -158,7 +159,7 @@ const Navbar = () => {
               className={`font-serif text-2xl tracking-wide transition-opacity py-2 ${
                 isActive(link.path)
                   ? "opacity-100 border-b-2 border-foreground"
-                  : "opacity-0 hover:opacity-100"
+                  : "opacity-60 hover:opacity-100"
               }`}
             >
               {link.name}
