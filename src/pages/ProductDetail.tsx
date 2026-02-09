@@ -1,9 +1,16 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, MessageCircle, Truck, RefreshCw, Shield } from "lucide-react";
+import {
+  ArrowLeft,
+  MessageCircle,
+  Truck,
+  RefreshCw,
+  Shield,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getProductById, products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
+import { siteConfig } from "@/config/site";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,7 +22,7 @@ const ProductDetail = () => {
         <div className="text-center">
           <h1 className="font-serif text-2xl mb-4">Produk tidak ditemukan</h1>
           <Link to="/shop" className="btn-primary">
-            Kembali ke Shop
+            Kembali ke Koleksi
           </Link>
         </div>
       </div>
@@ -31,7 +38,7 @@ const ProductDetail = () => {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Halo SANARÉA! Saya tertarik dengan produk ${product.name} (${formatPrice(product.price)}). Apakah masih tersedia?`
+    `Halo SANARÉA! Saya tertarik dengan produk ${product.name} (${formatPrice(product.price)}). Apakah masih tersedia?`,
   );
 
   const relatedProducts = products
@@ -50,7 +57,7 @@ const ProductDetail = () => {
             className="inline-flex items-center space-x-2 font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={16} />
-            <span>Kembali ke Shop</span>
+            <span>Kembali ke Koleksi</span>
           </Link>
         </div>
       </section>
@@ -74,7 +81,7 @@ const ProductDetail = () => {
             <div className="animate-fade-in-up lg:py-8">
               {product.isNew && (
                 <span className="inline-block font-sans text-xs tracking-luxury uppercase bg-sanarea-charcoal text-sanarea-cream px-3 py-1 mb-4">
-                  New Arrival
+                  Produk Baru
                 </span>
               )}
               {product.isBestseller && (
@@ -132,31 +139,40 @@ const ProductDetail = () => {
 
               {/* CTA */}
               <a
-                href={`https://wa.me/6281234567890?text=${whatsappMessage}`}
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary w-full flex items-center justify-center space-x-3"
               >
                 <MessageCircle size={18} />
-                <span>Order via WhatsApp</span>
+                <span>Pesan via WhatsApp</span>
               </a>
 
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-border">
                 <div className="text-center">
-                  <Truck size={20} className="mx-auto mb-2 text-muted-foreground" />
+                  <Truck
+                    size={20}
+                    className="mx-auto mb-2 text-muted-foreground"
+                  />
                   <span className="font-sans text-xs text-muted-foreground">
                     Pengiriman Cepat
                   </span>
                 </div>
                 <div className="text-center">
-                  <RefreshCw size={20} className="mx-auto mb-2 text-muted-foreground" />
+                  <RefreshCw
+                    size={20}
+                    className="mx-auto mb-2 text-muted-foreground"
+                  />
                   <span className="font-sans text-xs text-muted-foreground">
-                    Easy Return
+                    Mudah Kembali
                   </span>
                 </div>
                 <div className="text-center">
-                  <Shield size={20} className="mx-auto mb-2 text-muted-foreground" />
+                  <Shield
+                    size={20}
+                    className="mx-auto mb-2 text-muted-foreground"
+                  />
                   <span className="font-sans text-xs text-muted-foreground">
                     100% Original
                   </span>
